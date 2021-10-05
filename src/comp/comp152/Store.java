@@ -17,18 +17,19 @@ public class Store {
     public void runStore(){
         var userInput = new Scanner(System.in); // creates scanner for user input
         while(true){
-            Menu();
-            var userChoice = userInput.nextInt();
+            Menu();   //prompts the visual menu for the user
+            var userChoice = userInput.nextInt(); // saves user response as an integer
             switch (userChoice){
                 case 1:
                     addCustomer(userInput);
                 case 2:
                     selectCustomer(userInput);
+                    break;
                 case 3:
                     ManageCustomer();
                 case 4:
                     userInput.nextLine(); //needed to eat previous input
-                    System.exit(5);
+                    System.exit(4);
             }
         }
     }
@@ -72,10 +73,22 @@ public class Store {
 
     private void selectCustomer(Scanner userInput) {
         userInput.nextLine(); //                      eats previous call for next int
-        System.out.println("Please type the name of the Customer you would like to select");
-        var selectCust = userInput.nextLine(); //saves user input as a string
+        System.out.println("Please type the name of the Customer you would like the Customer ID for");
+        var selectCust = userInput.nextLine();//saves user input as a string
+        for(Customer cust : Customers){
+            var customerNames = cust.getName();
+            System.out.println("" +customerNames);
+            if(customerNames.contains(selectCust)){
+                System.out.println("Yes! we do have " +selectCust +" in our System");
+                subMenu();
+            }
+            else{
+                System.out.println("I'm sorry but we do not have " +selectCust + " in our System");
+                subMenu();
+            }
 
-        System.out.println("Thank you, " + selectCust + " has been added to the list");
+        }
+
 
     }
 
@@ -86,17 +99,17 @@ public class Store {
         var newCustomer = userInput.nextLine();
         var cust = new ArrayList<Customer>();
         var numberpicker = new Random();
-        var pick = numberpicker.nextInt();
-        cust.add(new Customer(newCustomer, pick));
+        var pick = numberpicker.nextInt(); // randomly generates a number for the customerID
+        cust.add(new Customer(newCustomer, pick));// adds new customer to the Customer array list
         System.out.println("Thank you for adding " +newCustomer + " to the list.");
         System.out.println(""+newCustomer+ "'s customer ID is:  " +pick);
-        subMenu();
+        subMenu(); // Fluff I added to make the program feel better
 
 
 
 
     }
-    private void subMenu(){
+    private void subMenu(){ // Little sub menu I created which allows the user to either return to the main menu or exit the program
         var userInput = new Scanner(System.in);
         System.out.println("Would you like to exit?");
         System.out.println("     [1] No");
@@ -125,7 +138,10 @@ public class Store {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // runs the store :)
+        new Customer("John", 123);
+        new Customer("Jared", 456); // I cannot for the life of me get the Customer.txt file to work
+        new Customer("Jordan", 789);
         Store store = new Store();
         store.runStore();
 
