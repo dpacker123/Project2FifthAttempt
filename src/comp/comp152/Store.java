@@ -1,3 +1,12 @@
+
+
+
+// Comp152 mon/wed 1:50-3:05
+//David Packer
+//Project 2
+// 10/6/21
+
+
 package comp.comp152;
 
 import java.util.ArrayList;
@@ -14,6 +23,20 @@ public class Store {
 
 
     }
+// This is what I had to access the Customer.txt file. This works, but it doesn't assign the customer and Customer ID
+// My program doesn't work with this so I have commented it out but I left it to show you what I have
+  //  public void main(String[] args) throws IOException {
+        //var filename = "Customer.txt";
+        //var getFile = Paths.get(filename)
+        //var Customers = new ArrayList<String>();
+        //var CustomerID = new ArrayList<Integer>();
+        //var CustomerLines = Files.readAllLines(getFile);
+        //for(var line : CustomerLines){
+            //var splitLine = line.split(",");
+            //Customers.add(splitLine[0]);
+            //CustomerID.add(Integer.valueOf(splitLine[1]));
+
+       // }
     public void runStore(){
         System.out.println(Customers);
         var userInput = new Scanner(System.in);                             // creates scanner for user input
